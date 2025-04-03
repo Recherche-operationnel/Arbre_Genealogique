@@ -46,6 +46,51 @@ Application web permettant de **créer et visualiser** un arbre généalogique c
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3)
 
----
+### Classes UML pour ce système d'arbre généalogique
 
-git clone https://github.com/votre-user/arbre-genealogique.git
+```mermaid
+classDiagram
+    %% Classes principales
+    class Personne {
+        +id: Number
+        +prenom: String
+        +nom: String
+        +dateNaissance: Date
+        +dateDeces: Date
+        +genre: String
+        +photo: String
+        +notes: String
+        +parents: Personne[]
+        +conjoint: Personne
+        +enfants: Personne[]
+        +ajouterParent()
+        +ajouterEnfant()
+        +definirConjoint()
+    }
+
+    class ArbreGenealogique {
+        +membres: Personne[]
+        +racines: Personne[]
+        +ajouterMembre()
+        +supprimerMembre()
+        +trouverMembre()
+        +genererArbre()
+        +sauvegarderJSON()
+        +chargerJSON()
+    }
+
+    class InterfaceUtilisateur {
+        -arbre: ArbreGenealogique
+        +afficherArbre()
+        +afficherFormulaire()
+        +gererClicCarte()
+        +afficherModal()
+    }
+
+    %% Relations
+    Personne "1" *-- "0..2" Personne : Parents
+    Personne "1" -- "0..1" Personne : Conjoint
+    Personne "1" *-- "0..*" Personne : Enfants
+    
+    ArbreGenealogique "1" *-- "0..*" Personne : Contient
+    InterfaceUtilisateur --> ArbreGenealogique : Utilise
