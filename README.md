@@ -1,6 +1,6 @@
 # 🌳 Arbre Généalogique - Projet Scolaire
 
-![Bannière](https://via.placeholder.com/800x200?text=Arbre+Généalogique)  
+
 *Application web développée en JavaScript pour le cours de Recherche Opérationnelle*
 
 ---
