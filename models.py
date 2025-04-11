@@ -11,7 +11,9 @@ class Node:
     birthday: str
     sex: bool
 
-    relationships: List[Union['Vertex', int]]
+    parent_in: List[Union['Vertex', int]],
+    child_in: List[Union['Vertex', int]],
+    spouses_in: List[Vertex]
     # on peut rajouter autre chose si on veut
 
 
@@ -54,7 +56,7 @@ class UseCases:
     def loadFromJson(self, json: object):
         pass
 
-    def load_from_csv(self, nodes_path: Path, vertices_path: Path):
+    def load_from_csv(self, nodes_path: Path, vertices_path: Path, spouses_path: Path):
         pass
     
 
