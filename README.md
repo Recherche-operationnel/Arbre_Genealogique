@@ -8,6 +8,7 @@
 
 - on ne devrait pas pouvoir creer une relation entre un nœud et un nœud qui n'existe pas.
 
+**Note** ces contraintes doivent etre mise au niveau de la bd
 
 ## Endpoints à modifier
 
