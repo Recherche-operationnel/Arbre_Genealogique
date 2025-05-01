@@ -7,6 +7,8 @@ import heapq
 
 from app.utils.graph import Graph
 
+from app.solvers.prim_solver import PrimSolver
+
 
 class SolverService:
     @staticmethod
@@ -140,46 +142,11 @@ class SolverService:
     @staticmethod
     def solve_prim(db: Session) -> Dict[str, Any]:
         graph = Graph.load_from_db(db)
-        
-        if not graph.nodes:
-            return {"error": "No nodes in the graph"}
-            
-        # Start with the first node
-        start_node_id = next(iter(graph.nodes.keys()))
-        
-        # Set of visited nodes
-        visited = {start_node_id}
-        
-        # Priority queue for edges
-        edges = [(weight, start_node_id, neighbor) 
-                for neighbor, weight in graph.edges[start_node_id]]
-        heapq.heapify(edges)
-        
-        # MST edges and total weight
-        mst_edges = []
-        total_weight = 0
-        
-        # Prim's algorithm
-        while edges and len(visited) < len(graph.nodes):
-            weight, u, v = heapq.heappop(edges)
-            
-            if v in visited:
-                continue
-                
-            visited.add(v)
-            mst_edges.append({"from": u, "to": v, "weight": weight})
-            total_weight += weight
-            
-            # Add all edges from v to the priority queue
-            for neighbor, edge_weight in graph.edges[v]:
-                if neighbor not in visited:
-                    heapq.heappush(edges, (edge_weight, v, neighbor))
-        
-        return {
-            "algorithm": "Prim",
-            "mst_edges": mst_edges,
-            "total_weight": total_weight
-        }
+
+        PrimSolver.initialGraph = graph
+        return PrimSolver.solve(PrimSolver.initialGraph)
+
+       
 
     @staticmethod
     def solve_kruskal(db: Session) -> Dict[str, Any]:

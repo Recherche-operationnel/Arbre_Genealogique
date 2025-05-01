@@ -15,6 +15,12 @@ class VertexService:
         if not parent or not child:
             return None
         
+        if vertex_data.rank < 1:
+            return None
+        
+        if parent.id == child.id:
+            return None
+        
         # Verify the max parents constraint: max 2^rank parents per node at rank k
         rank = vertex_data.rank
         child_id = vertex_data.child_id

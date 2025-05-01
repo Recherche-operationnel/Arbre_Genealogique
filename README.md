@@ -1,8 +1,8 @@
 ## Contraintes à rajouter:
 
-- le rang des relations parents enfants est minimum 1.
+- le rang des relations parents enfants est minimum 1.fait
 
-- on ne devrait pas avoir une relation où le parent et l'enfant sont le meme nœud (la meme personne).
+- on ne devrait pas avoir une relation où le parent et l'enfant sont le meme nœud (la meme personne).fait
 
 - on ne devrait pas avoir la meme relation deux fois entre un père et un enfant
 
